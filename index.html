@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claveo — Digitalni sustav za hotele | Web, rezervacije, CRM</title>
+<meta name="description" content="Claveo je kompletan digitalni operativni sustav za hotele. Web stranica, rezervacije, CRM, admin panel i marketing u jednom. Za boutique hotele i hotelske lance.">
+<meta name="keywords" content="hotelski software, hotel web stranica, rezervacijski sustav hotel, hotel CRM, digitalizacija hotela, hotelski management sustav, property management system hrvatska">
+<meta property="og:title" content="Claveo — Digitalni sustav za hotele">
+<meta property="og:description" content="Web stranica, rezervacije, CRM i marketing u jednom sustavu. Za boutique hotele i hotelske lance.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#FFFFFF;
+  --bg:#F7F9FC;
+  --bg2:#EEF2F8;
+  --surface:#FFFFFF;
+  --navy:#1A2B4A;
+  --navy2:#243558;
+  --blue:#3B6FBF;
+  --blue-light:#EBF1FB;
+  --blue-mid:#C8D8F5;
+  --steel:#6B7FA3;
+  --muted:#8C9BB8;
+  --border:#DDE4F0;
+  --border2:#C8D4E8;
+  --text:#1A2B4A;
+  --text2:#4A5D80;
+  --text3:#7A8EB0;
+  --accent:#3B6FBF;
+  --accent2:#2A5299;
+  --shadow:0 2px 20px rgba(59,111,191,0.08);
+  --shadow2:0 8px 40px rgba(59,111,191,0.12);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 64px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Lora',serif;font-size:22px;font-weight:500;color:var(--navy);letter-spacing:-0.02em;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text2);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-btn{background:var(--accent);color:white;padding:10px 24px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;border-radius:6px;transition:background 0.2s,transform 0.1s;}
+.nav-btn:hover{background:var(--accent2);transform:translateY(-1px);}
+
+.hero{padding:140px 64px 100px;background:linear-gradient(160deg,#FFFFFF 0%,#EEF2F8 50%,#E4EDF8 100%);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(59,111,191,0.06) 0%,transparent 65%);pointer-events:none;}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--blue-light);border:1px solid var(--blue-mid);padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;color:var(--accent);margin-bottom:24px;letter-spacing:0.03em;text-transform:uppercase;}
+.hero-badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;}
+.hero h1{font-family:'Lora',serif;font-size:clamp(38px,4.5vw,62px);font-weight:500;line-height:1.1;color:var(--navy);margin-bottom:20px;letter-spacing:-0.02em;}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero-sub{font-size:17px;color:var(--text2);line-height:1.8;margin-bottom:40px;max-width:460px;font-weight:400;}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:48px;}
+.btn-primary{background:var(--accent);color:white;padding:14px 32px;font-size:14px;font-weight:600;border:none;cursor:pointer;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;box-shadow:0 4px 16px rgba(59,111,191,0.3);}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);}
+.btn-outline{background:white;color:var(--navy);padding:14px 32px;font-size:14px;font-weight:600;border:1.5px solid var(--border2);cursor:pointer;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.hero-trust{display:flex;align-items:center;gap:16px;font-size:12px;color:var(--text3);font-weight:500;flex-wrap:wrap;}
+.trust-sep{width:4px;height:4px;background:var(--border2);border-radius:50%;}
+
+.hero-card{background:white;border-radius:16px;box-shadow:var(--shadow2);border:1px solid var(--border);overflow:hidden;}
+.hcard-header{background:var(--navy);padding:16px 20px;display:flex;align-items:center;gap:8px;}
+.hcard-dot{width:8px;height:8px;border-radius:50%;}
+.d1{background:#FF5F57;}.d2{background:#FEBC2E;}.d3{background:#28C840;}
+.hcard-title{font-size:12px;color:rgba(255,255,255,0.5);margin-left:8px;font-weight:500;letter-spacing:0.5px;}
+.hcard-body{padding:24px;}
+.hcard-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.hcard-row:last-child{border-bottom:none;}
+.hcard-label{color:var(--text2);font-weight:500;}
+.hcard-val{font-weight:600;color:var(--navy);display:flex;align-items:center;gap:6px;}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#28C840;}
+.status-dot.yellow{background:#FEBC2E;}
+.hcard-metric{margin-top:16px;background:var(--blue-light);border-radius:10px;padding:16px 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.hm-val{font-family:'Lora',serif;font-size:28px;font-weight:500;color:var(--accent);line-height:1;}
+.hm-label{font-size:11px;color:var(--steel);margin-top:4px;font-weight:500;}
+
+.strip{background:var(--navy);padding:20px 64px;overflow:hidden;}
+.strip-inner{display:flex;gap:60px;animation:scroll 25s linear infinite;width:max-content;}
+.strip-item{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;}
+.strip-item strong{color:rgba(255,255,255,0.9);}
+.strip-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.section-full{padding:96px 64px;background:white;}
+.section-full .section-inner{max-width:1200px;margin:0 auto;}
+.section-alt{padding:96px 64px;background:var(--bg);}
+.section-alt .section-inner{max-width:1200px;margin:0 auto;}
+
+.label-chip{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;}
+.label-chip::before{content:'';width:20px;height:2px;background:var(--accent);border-radius:2px;}
+h2.section-title{font-family:'Lora',serif;font-size:clamp(28px,3vw,44px);font-weight:500;color:var(--navy);line-height:1.15;letter-spacing:-0.02em;margin-bottom:16px;}
+h2.section-title em{font-style:italic;color:var(--accent);}
+.section-desc{font-size:16px;color:var(--text2);max-width:520px;line-height:1.8;margin-bottom:56px;}
+
+.audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
+.audience-card{background:white;border-radius:14px;border:1px solid var(--border);padding:40px;transition:all 0.25s;position:relative;overflow:hidden;}
+.audience-card:hover{border-color:var(--blue-mid);box-shadow:var(--shadow2);transform:translateY(-4px);}
+.audience-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#6B9FE8);opacity:0;transition:opacity 0.25s;}
+.audience-card:hover::before{opacity:1;}
+.aud-icon{width:48px;height:48px;background:var(--blue-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;}
+.aud-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.aud-sub{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:16px;}
+.aud-desc{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:24px;}
+.aud-list{list-style:none;}
+.aud-list li{font-size:13px;color:var(--text2);padding:7px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;font-weight:500;}
+.aud-list li:last-child{border-bottom:none;}
+.aud-list li::before{content:'✓';color:var(--accent);font-weight:700;font-size:12px;flex-shrink:0;}
+
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.feat-card{background:white;border:1px solid var(--border);border-radius:14px;padding:32px;transition:all 0.25s;}
+.feat-card:hover{border-color:var(--blue-mid);box-shadow:var(--shadow);transform:translateY(-3px);}
+.feat-icon{width:42px;height:42px;background:var(--blue-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
+.feat-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.feat-desc{font-size:13px;color:var(--text2);line-height:1.75;}
+
+.case-wrap{background:var(--navy);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
+.case-left{padding:56px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);}
+.case-eyebrow{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;}
+.case-name{font-family:'Lora',serif;font-size:38px;font-weight:500;color:white;margin-bottom:20px;line-height:1.1;}
+.case-desc{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.8;margin-bottom:32px;}
+.case-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:3px;transition:color 0.2s;}
+.case-link:hover{color:white;}
+.case-right{display:grid;grid-template-columns:1fr 1fr;background:rgba(255,255,255,0.03);}
+.case-metric{padding:40px 32px;border-right:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;justify-content:center;}
+.case-metric:nth-child(2n){border-right:none;}
+.case-metric:nth-child(3),.case-metric:nth-child(4){border-bottom:none;}
+.cm-num{font-family:'Lora',serif;font-size:48px;font-weight:500;color:white;line-height:1;margin-bottom:8px;}
+.cm-label{font-size:11px;font-weight:600;color:rgba(255,255,255,0.4);letter-spacing:0.08em;text-transform:uppercase;}
+
+.pitch-section{background:var(--blue-light);border:1px solid var(--blue-mid);border-radius:20px;padding:64px;text-align:center;position:relative;overflow:hidden;}
+.pitch-headline{font-family:'Lora',serif;font-size:clamp(24px,3vw,42px);font-weight:500;color:var(--navy);line-height:1.2;margin-bottom:12px;}
+.pitch-headline em{font-style:italic;color:var(--accent);}
+.pitch-sub{font-size:16px;color:var(--text2);max-width:460px;margin:0 auto 40px;line-height:1.75;}
+.pitch-compare{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:40px;}
+.pc-item{background:white;border-radius:12px;padding:24px 36px;border:1px solid var(--border);box-shadow:var(--shadow);text-align:center;}
+.pc-val{font-family:'Lora',serif;font-size:36px;font-weight:500;line-height:1;margin-bottom:6px;}
+.pc-val.red{color:#E05555;}
+.pc-val.blue{color:var(--accent);}
+.pc-label{font-size:12px;color:var(--text3);font-weight:500;}
+.pc-vs{font-size:18px;font-weight:700;color:var(--muted);}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.plan{background:white;border-radius:16px;border:1.5px solid var(--border);padding:40px 36px;position:relative;transition:all 0.25s;}
+.plan:hover{box-shadow:var(--shadow2);}
+.plan.featured{border-color:var(--accent);box-shadow:0 8px 40px rgba(59,111,191,0.15);}
+.plan-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:white;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 18px;border-radius:100px;white-space:nowrap;}
+.plan-for{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;}
+.plan-name{font-size:13px;font-weight:700;color:var(--text3);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:20px;}
+.plan-price{font-family:'Lora',serif;font-size:52px;font-weight:500;color:var(--navy);line-height:1;}
+.plan-price sup{font-size:22px;vertical-align:super;color:var(--text2);}
+.plan-monthly{font-size:13px;font-weight:600;color:var(--accent);margin:8px 0 28px;}
+.plan hr{border:none;border-top:1px solid var(--border);margin-bottom:24px;}
+.plan ul{list-style:none;margin-bottom:32px;}
+.plan ul li{font-size:13px;color:var(--text2);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;font-weight:500;}
+.plan ul li:last-child{border-bottom:none;}
+.plan ul li::before{content:'✓';color:var(--accent);font-weight:700;font-size:12px;flex-shrink:0;}
+.plan-btn{width:100%;padding:13px;font-size:13px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;border-radius:8px;transition:all 0.2s;}
+.plan-btn-outline{background:white;color:var(--navy);border:1.5px solid var(--border2);}
+.plan-btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.plan-btn-solid{background:var(--accent);color:white;border:none;box-shadow:0 4px 16px rgba(59,111,191,0.3);}
+.plan-btn-solid:hover{background:var(--accent2);}
+
+.int-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+.int-item{background:white;border:1px solid var(--border);border-radius:12px;padding:20px 16px;text-align:center;transition:all 0.2s;}
+.int-item:hover{border-color:var(--blue-mid);box-shadow:var(--shadow);}
+.int-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;margin:0 auto 10px;}
+.int-name{font-size:12px;font-weight:600;color:var(--text2);}
+
+.partner-box{background:var(--navy);border-radius:20px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.partner-left{padding:56px;}
+.partner-left h3{font-family:'Lora',serif;font-size:34px;font-weight:500;color:white;line-height:1.2;margin-bottom:16px;}
+.partner-left h3 em{font-style:italic;color:#7BA8E8;}
+.partner-left p{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:32px;}
+.partner-right{display:grid;grid-template-columns:1fr 1fr;background:rgba(255,255,255,0.04);border-left:1px solid rgba(255,255,255,0.06);}
+.pb{padding:36px 28px;border-right:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);}
+.pb:nth-child(2n){border-right:none;}
+.pb:nth-child(3),.pb:nth-child(4){border-bottom:none;}
+.pb-val{font-family:'Lora',serif;font-size:36px;font-weight:500;color:white;line-height:1;}
+.pb-label{font-size:11px;font-weight:600;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-top:6px;}
+
+.faq-list{max-width:760px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;padding:20px 0;display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:600;color:var(--navy);background:none;border:none;cursor:pointer;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;gap:20px;}
+.faq-q:hover{color:var(--accent);}
+.faq-icon{font-size:20px;color:var(--accent);flex-shrink:0;transition:transform 0.25s;font-weight:300;}
+.faq-icon.open{transform:rotate(45deg);}
+.faq-a{display:none;padding:0 0 20px;font-size:14px;color:var(--text2);line-height:1.8;}
+.faq-a.open{display:block;}
+
+.contact-wrap{background:white;border-radius:20px;border:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;box-shadow:var(--shadow2);}
+.contact-left{padding:56px;background:linear-gradient(135deg,var(--bg) 0%,var(--bg2) 100%);border-right:1px solid var(--border);}
+.contact-left h3{font-family:'Lora',serif;font-size:32px;font-weight:500;color:var(--navy);line-height:1.2;margin-bottom:12px;}
+.contact-left h3 em{font-style:italic;color:var(--accent);}
+.contact-left p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:32px;}
+.contact-promise{display:flex;flex-direction:column;gap:12px;}
+.cp-item{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text2);font-weight:500;}
+.cp-icon{width:32px;height:32px;background:var(--blue-light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.contact-right{padding:56px;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:6px;letter-spacing:0.03em;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;color:var(--navy);padding:12px 16px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;outline:none;transition:border-color 0.2s;-webkit-appearance:none;}
+.form-group input:focus,.form-group select:focus{border-color:var(--accent);background:white;}
+.form-group input::placeholder{color:var(--muted);}
+.form-group select option{background:white;color:var(--navy);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.submit-btn{width:100%;padding:14px;background:var(--accent);color:white;font-size:14px;font-weight:700;border:none;cursor:pointer;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;box-shadow:0 4px 16px rgba(59,111,191,0.3);margin-top:8px;}
+.submit-btn:hover{background:var(--accent2);transform:translateY(-2px);}
+.success-msg{display:none;text-align:center;padding:20px;margin-top:12px;background:var(--blue-light);border-radius:8px;font-size:14px;font-weight:600;color:var(--accent);}
+
+footer{background:var(--navy);padding:48px 64px 32px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+.footer-logo{font-family:'Lora',serif;font-size:22px;font-weight:500;color:white;margin-bottom:12px;}
+.footer-logo span{color:#7BA8E8;}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:220px;}
+.footer-col h4{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;margin-bottom:10px;transition:color 0.2s;}
+.footer-col a:hover{color:white;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.3);}
+.footer-seo{font-size:11px;color:rgba(255,255,255,0.2);max-width:500px;line-height:1.6;}
+
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .hero{padding:100px 20px 60px;}
+  .hero-inner{grid-template-columns:1fr;gap:40px;}
+  .hero-card{display:none;}
+  .strip{padding:16px 20px;}
+  .section-full,.section-alt{padding:64px 20px;}
+  .audience-grid,.features-grid,.pricing-grid{grid-template-columns:1fr;}
+  .case-wrap{grid-template-columns:1fr;}
+  .case-left{padding:36px 24px;}
+  .int-grid{grid-template-columns:repeat(3,1fr);}
+  .partner-box,.contact-wrap{grid-template-columns:1fr;}
+  .contact-left{border-right:none;border-bottom:1px solid var(--border);}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  footer{padding:40px 20px 24px;}
+  .pitch-section{padding:40px 20px;}
+  .partner-left{padding:36px 24px;}
+  .contact-left,.contact-right{padding:36px 24px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Cl<span>a</span>veo</div>
+  <div class="nav-links">
+    <a href="#za-koga">Za koga</a>
+    <a href="#sustav">Sustav</a>
+    <a href="#paketi">Paketi</a>
+    <a href="#partneri">Partneri</a>
+    <a href="#faq">FAQ</a>
+    <button class="nav-btn" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Besplatni demo</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Hotelski operativni sustav</div>
+      <h1>Jedan sustav.<br><em>Cijeli hotel.</em></h1>
+      <p class="hero-sub">Web stranica, rezervacije, CRM, admin panel i marketing — sve integrirano u jedan sustav. Za boutique hotel i za hotelski lanac.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Zatražite besplatni demo</button>
+        <button class="btn-outline" onclick="document.getElementById('case').scrollIntoView({behavior:'smooth'})">Pogledajte primjer →</button>
+      </div>
+      <div class="hero-trust">
+        <span>✓ Implementacija u 7 dana</span>
+        <div class="trust-sep"></div>
+        <span>✓ Bez tehničkog znanja</span>
+        <div class="trust-sep"></div>
+        <span>✓ Bez dugoročnih ugovora</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hcard-header">
+        <div class="hcard-dot d1"></div><div class="hcard-dot d2"></div><div class="hcard-dot d3"></div>
+        <span class="hcard-title">claveo.io — Admin Panel</span>
+      </div>
+      <div class="hcard-body">
+        <div class="hcard-row"><span class="hcard-label">Web stranica</span><span class="hcard-val"><div class="status-dot"></div>Live</span></div>
+        <div class="hcard-row"><span class="hcard-label">Rezervacijski sustav</span><span class="hcard-val"><div class="status-dot"></div>Aktivan</span></div>
+        <div class="hcard-row"><span class="hcard-label">CRM kontakti</span><span class="hcard-val"><div class="status-dot yellow"></div>847 gostiju</span></div>
+        <div class="hcard-row"><span class="hcard-label">Kampanje</span><span class="hcard-val"><div class="status-dot"></div>3 aktivne</span></div>
+        <div class="hcard-metric">
+          <div><div class="hm-val">94%</div><div class="hm-label">Direktni booking</div></div>
+          <div><div class="hm-val">7 dana</div><div class="hm-label">Do live verzije</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item"><strong>Web stranica</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>Rezervacijski sustav</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>CRM segmentacija</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>Admin panel</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>CDN galerija</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>Marketing materijali</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>Jelovnik editor</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>PMS integracija</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>Web stranica</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>Rezervacijski sustav</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>CRM segmentacija</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>Admin panel</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>CDN galerija</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>Marketing materijali</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>Jelovnik editor</strong></div><div class="strip-dot"></div>
+    <div class="strip-item"><strong>PMS integracija</strong></div><div class="strip-dot"></div>
+  </div>
+</div>
+
+<div class="section-full" id="za-koga">
+  <div class="section-inner">
+    <div class="label-chip">Za koga je Claveo</div>
+    <h2 class="section-title">Prilagođen svakom hotelu —<br><em>od boutique do lanca.</em></h2>
+    <p class="section-desc">Jedan sustav koji raste s vašim hotelom. Isti alati koje koriste veliki lanci — po cijeni dostupnoj svima.</p>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="aud-icon">🏡</div>
+        <div class="aud-title">Boutique i obiteljski hoteli</div>
+        <div class="aud-sub">Do 50 soba · 1–3 objekta</div>
+        <p class="aud-desc">Dobivate profesionalnu digitalnu prisutnost koja konkurira velikim lancima — bez velikih troškova i IT tima.</p>
+        <ul class="aud-list">
+          <li>Web stranica gotova za 7 dana</li>
+          <li>Rezervacije bez provizije Booking.com</li>
+          <li>Automatske email potvrde gostima</li>
+          <li>Galerija optimizirana za brzinu</li>
+          <li>Upravljanje sadržajem bez agencije</li>
+        </ul>
+      </div>
+      <div class="audience-card">
+        <div class="aud-icon">🏢</div>
+        <div class="aud-title">Hotelski lanci i grupe</div>
+        <div class="aud-sub">50+ soba · Više objekata</div>
+        <p class="aud-desc">Centraliziran nadzor svih objekata, unified CRM za goste i napredna segmentacija — sve pod jednom platformom koja se skalira.</p>
+        <ul class="aud-list">
+          <li>Multi-property admin panel</li>
+          <li>Centraliziran CRM za sve objekte</li>
+          <li>Segmentacija: Corporate, Sport, Wellness...</li>
+          <li>API integracija s vašim PMS-om</li>
+          <li>Dedicirani account manager</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-alt" id="sustav">
+  <div class="section-inner">
+    <div class="label-chip">Što je uključeno</div>
+    <h2 class="section-title">Sve što vaš hotel treba.<br><em>Na jednom mjestu.</em></h2>
+    <p class="section-desc">Nema više žongliranja s 6 različitih sustava. Claveo integrira sve u jedan admin panel koji vaš tim može koristiti od prvog dana.</p>
+    <div class="features-grid">
+      <div class="feat-card"><div class="feat-icon">🌐</div><div class="feat-title">Web stranica s CMS-om</div><p class="feat-desc">Profesionalna web stranica prilagođena vašem hotelu. Mijenjate sadržaj sami — sobe, cijene, galerija, tekstovi — bez agencije i bez čekanja.</p></div>
+      <div class="feat-card"><div class="feat-icon">📅</div><div class="feat-title">Sustav rezervacija</div><p class="feat-desc">Gost bira termin online, sustav provjerava dostupnost u realnom vremenu i šalje automatsku potvrdu. Integracija s Nokumo, Beds24, Smoobu ili vašim PMS-om.</p></div>
+      <div class="feat-card"><div class="feat-icon">⚙️</div><div class="feat-title">Admin panel</div><p class="feat-desc">Centralna kontrolna ploča za rezervacije, sadržaj, statistike i komunikaciju. Sve dostupno s desktop-a ili mobilnog uređaja, u realnom vremenu.</p></div>
+      <div class="feat-card"><div class="feat-icon">👥</div><div class="feat-title">CRM i segmentacija gostiju</div><p class="feat-desc">HubSpot integracija za potpunu bazu gostiju. Segmentacija po skupinama: Corporate, Sport, Planinarenje, Wellness, Vjenčanja. Pravi message pravim gostima.</p></div>
+      <div class="feat-card"><div class="feat-icon">🖼️</div><div class="feat-title">Galerija s CDN optimizacijom</div><p class="feat-desc">Upload do 10 MB, automatska kompresija u WebP format, SEO nazivi i isporuka s globalnog CDN-a. Fotografije koje se brzo učitavaju na svim uređajima.</p></div>
+      <div class="feat-card"><div class="feat-icon">📢</div><div class="feat-title">Marketing materijali</div><p class="feat-desc">Factsheetovi prilagođeni svakoj ciljnoj skupini i gotovi oglasi za Meta i Google — spremni za kampanje od prvog dana, bez agencije.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-full" id="case">
+  <div class="section-inner">
+    <div class="label-chip">Živući primjer</div>
+    <h2 class="section-title">Hotel Kalnik —<br><em>kompletan sustav u 7 dana.</em></h2>
+    <p class="section-desc" style="margin-bottom:40px;">Pogledajte kako smo implementirali cijeli Claveo ekosustav za Hotel Kalnik — od nule do potpuno funkcionalnog digitalnog hotela.</p>
+    <div class="case-wrap">
+      <div class="case-left">
+        <div class="case-eyebrow">Case study · 2025</div>
+        <div class="case-name">Hotel Kalnik</div>
+        <p class="case-desc">Kompletan digitalni setup — nova web stranica s CMS-om, sustav rezervacija s Nokumo PMS integracijom, HubSpot CRM za segmentaciju po 5 ciljnih skupina i marketing materijali. Implementirano u 7 radnih dana.</p>
+        <a href="https://hotel-kalnik.vercel.app" class="case-link" target="_blank">Posjetite hotel-kalnik.vercel.app →</a>
+      </div>
+      <div class="case-right">
+        <div class="case-metric"><div class="cm-num">7</div><div class="cm-label">Dana implementacije</div></div>
+        <div class="case-metric"><div class="cm-num">5</div><div class="cm-label">Sustava spojeno</div></div>
+        <div class="case-metric"><div class="cm-num">0€</div><div class="cm-label">Booking provizija</div></div>
+        <div class="case-metric"><div class="cm-num">∞</div><div class="cm-label">Promjena sadržaja</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-alt">
+  <div class="section-inner">
+    <div class="pitch-section">
+      <p class="pitch-headline">Booking.com uzima <em>18% svake rezervacije.</em><br>Claveo uzima 249 € mjesečno.</p>
+      <p class="pitch-sub">Fiksna naknada. Bez provizija. Bez iznenađenja. Vi zadržavate prihod od direktnih rezervacija.</p>
+      <div class="pitch-compare">
+        <div class="pc-item"><div class="pc-val red">18%</div><div class="pc-label">Booking.com provizija</div></div>
+        <div class="pc-vs">VS</div>
+        <div class="pc-item"><div class="pc-val blue">249€</div><div class="pc-label">Claveo — fiksno/mj</div></div>
+      </div>
+      <button class="btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Izračunajte svoju uštedu →</button>
+    </div>
+  </div>
+</div>
+
+<div class="section-full" id="paketi">
+  <div class="section-inner">
+    <div class="label-chip">Cijene i paketi</div>
+    <h2 class="section-title">Transparentno.<br><em>Bez skrivenih troškova.</em></h2>
+    <p class="section-desc">Setup jednom, plaćate fiksno. Nema provizija, nema dugoročnih ugovora, nema iznenađenja na računu.</p>
+    <div class="pricing-grid">
+      <div class="plan">
+        <div class="plan-for">Za boutique hotele</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-price"><sup>€</sup>2.500</div>
+        <div class="plan-monthly">+ 149 € / mjesec</div>
+        <hr>
+        <ul>
+          <li>Web stranica s CMS-om</li>
+          <li>Sustav rezervacija</li>
+          <li>Admin panel</li>
+          <li>CDN galerija optimizacija</li>
+          <li>Jelovnik editor</li>
+          <li>Email podrška</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Saznajte više</button>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">Najpopularniji</div>
+        <div class="plan-for">Za hotele s više usluga</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><sup>€</sup>4.500</div>
+        <div class="plan-monthly">+ 249 € / mjesec</div>
+        <hr>
+        <ul>
+          <li>Sve iz Standard paketa</li>
+          <li>HubSpot CRM integracija</li>
+          <li>Segmentacija gostiju</li>
+          <li>Marketing materijali</li>
+          <li>2 oglasne kampanje/god</li>
+          <li>Prioritetna podrška</li>
+        </ul>
+        <button class="plan-btn plan-btn-solid" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Zatražite demo</button>
+      </div>
+      <div class="plan">
+        <div class="plan-for">Za lance i grupe objekata</div>
+        <div class="plan-name">Premium</div>
+        <div class="plan-price"><sup>€</sup>7.500</div>
+        <div class="plan-monthly">+ 399 € / mjesec</div>
+        <hr>
+        <ul>
+          <li>Sve iz Pro paketa</li>
+          <li>Multi-property panel</li>
+          <li>Custom dizajn i branding</li>
+          <li>Višejezična stranica</li>
+          <li>Neograničene integracije</li>
+          <li>Dedicirani account manager</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Saznajte više</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-alt">
+  <div class="section-inner">
+    <div class="label-chip">Integracije</div>
+    <h2 class="section-title">Spaja se s <em>vašim sustavima.</em></h2>
+    <p class="section-desc" style="margin-bottom:40px;">Claveo se integrira s vodećim PMS i CRM sustavima. Imate vlastiti PMS? Integriramo ga putem API-ja.</p>
+    <div class="int-grid">
+      <div class="int-item"><div class="int-dot"></div><div class="int-name">Nokumo PMS</div></div>
+      <div class="int-item"><div class="int-dot"></div><div class="int-name">Beds24</div></div>
+      <div class="int-item"><div class="int-dot"></div><div class="int-name">Smoobu</div></div>
+      <div class="int-item"><div class="int-dot"></div><div class="int-name">HubSpot CRM</div></div>
+      <div class="int-item"><div class="int-dot"></div><div class="int-name">Vercel CDN</div></div>
+      <div class="int-item"><div class="int-dot"></div><div class="int-name">Meta & Google Ads</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-full" id="partneri">
+  <div class="section-inner">
+    <div class="label-chip">Partnerski program</div>
+    <h2 class="section-title">Prodajte Claveo.<br><em>Zaradite pasivno.</em></h2>
+    <p class="section-desc" style="margin-bottom:40px;">Web agencije, konzultanti i ex-hotelski manageri — postanite Claveo partner i zaradite bez tehničke odgovornosti.</p>
+    <div class="partner-box">
+      <div class="partner-left">
+        <h3>Vi dovedete hotel.<br><em>Mi radimo sve ostalo.</em></h3>
+        <p>Ne trebate tehničko znanje. Ne trebate voditi implementaciju. Samo dovedete klijenta — mi implementiramo, podržavamo i facturiramo. Vi dobivate proviziju automatski.</p>
+        <button class="btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Postanite Claveo partner →</button>
+      </div>
+      <div class="partner-right">
+        <div class="pb"><div class="pb-val">25%</div><div class="pb-label">Setup komisija</div></div>
+        <div class="pb"><div class="pb-val">10%</div><div class="pb-label">Mjesečno · 12 mj</div></div>
+        <div class="pb"><div class="pb-val">1.424€</div><div class="pb-label">Po PRO klijentu</div></div>
+        <div class="pb"><div class="pb-val">7.000€</div><div class="pb-label">Godišnje · 5 hotela</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-alt" id="faq">
+  <div class="section-inner" style="text-align:center;">
+    <div class="label-chip" style="justify-content:center;">Česta pitanja</div>
+    <h2 class="section-title">Imate pitanja?<br><em>Imamo odgovore.</em></h2>
+    <div class="faq-list" style="text-align:left;margin-top:40px;">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Kako izgleda implementacija i koliko traje?<span class="faq-icon">+</span></button><div class="faq-a">Nakon potpisa ugovora, šaljemo vam intake formu — logo, boje, fotografije, tekstovi. Na temelju toga gradimo cijeli sustav. Prosječna implementacija traje 7 radnih dana. Vi ne trebate raditi ništa tehničko.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Trebamo li IT osoblje ili tehničko znanje?<span class="faq-icon">+</span></button><div class="faq-a">Ne. Cijeli sustav je dizajniran za hotelske timove bez tehničkog znanja. Recepcionar ili marketing manager može upravljati sadržajem, rezervacijama i CRM-om bez ikakve posebne obuke.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Što ako već imamo PMS sustav?<span class="faq-icon">+</span></button><div class="faq-a">Nema problema. Integriramo se s vašim postojećim PMS sustavom putem API-ja. Podržavamo Nokumo, Beds24, Smoobu i mnoge druge. Ako imate nestandardni sustav, kontaktirajte nas za provjeru kompatibilnosti.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Možemo li prilagoditi dizajn svom brendu?<span class="faq-icon">+</span></button><div class="faq-a">Da — svaka implementacija je prilagođena vašem hotelu: logo, boje, fontovi, fotografije, tekstovi. Pro i Premium paketi uključuju dodatnu razinu custom dizajna i brendiranja.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Postoje li dugoročni ugovori ili skriveni troškovi?<span class="faq-icon">+</span></button><div class="faq-a">Ne. Plaćate jednokratni setup i fiksnu mjesečnu naknadu. Nema provizija po rezervaciji, nema skrivenih naknada, nema dugoročnih obveza. Otkaz s 30-dnevnim otkaznim rokom.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Radi li sustav i za hotele izvan Hrvatske?<span class="faq-icon">+</span></button><div class="faq-a">Da. Claveo je izgrađen prema europskim standardima i podržava višejezične stranice (HR, EN, DE, IT...), međunarodne valute i GDPR compliance.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-full" id="kontakt">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="label-chip" style="justify-content:center;">Kontakt</div>
+      <h2 class="section-title">Razgovor ne košta ništa.<br><em>Demo je besplatan.</em></h2>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-left">
+        <h3>Javimo se<br><em>unutar 24 sata.</em></h3>
+        <p>Pošaljite nam podatke o hotelu i mi ćemo pripremiti personalizirani prijedlog koji odgovara vašem objektu — boutique ili lanac.</p>
+        <div class="contact-promise">
+          <div class="cp-item"><div class="cp-icon">⚡</div>Odgovaramo unutar 24 sata radnim danom</div>
+          <div class="cp-item"><div class="cp-icon">🎯</div>Personalizirani prijedlog za vaš hotel</div>
+          <div class="cp-item"><div class="cp-icon">🔒</div>Bez obveze, bez pritiska</div>
+          <div class="cp-item"><div class="cp-icon">🌍</div>Servisiramo Hrvatska i EU tržište</div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="form-row">
+          <div class="form-group"><label>Ime hotela ili grupe *</label><input type="text" placeholder="Hotel Adriatic" id="f-name"></div>
+          <div class="form-group"><label>Kontakt osoba *</label><input type="text" placeholder="Ime i prezime" id="f-person"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email adresa *</label><input type="email" placeholder="direktor@hotel.hr" id="f-email"></div>
+          <div class="form-group"><label>Broj telefona</label><input type="tel" placeholder="+385 91 234 5678" id="f-tel"></div>
+        </div>
+        <div class="form-group">
+          <label>Tip hotela</label>
+          <select id="f-type">
+            <option value="" disabled selected>Odaberite tip objekta</option>
+            <option>Boutique hotel (do 30 soba)</option>
+            <option>Mid-size hotel (30–100 soba)</option>
+            <option>Veliki hotel (100+ soba)</option>
+            <option>Hotelski lanac (više objekata)</option>
+            <option>Apartmanski kompleks</option>
+            <option>Wellness / Spa resort</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Koji paket vas zanima?</label>
+          <select id="f-package">
+            <option value="" disabled selected>Odaberite paket</option>
+            <option>Standard — 2.500€ + 149€/mj</option>
+            <option>Pro — 4.500€ + 249€/mj</option>
+            <option>Premium — 7.500€ + 399€/mj</option>
+            <option>Partnerski program</option>
+            <option>Nisam siguran, trebam savjet</option>
+          </select>
+        </div>
+        <button class="submit-btn" onclick="handleSubmit()">Pošalji upit — besplatni demo →</button>
+        <div class="success-msg" id="f-success">✓ Hvala! Javimo se unutar 24 sata s vašim prijedlogom.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Cl<span>a</span>veo</div>
+      <p class="footer-tagline">Kompletan digitalni operativni sustav za hotele. Od boutique do lanca.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sustav</h4>
+      <a href="#sustav">Web stranica</a>
+      <a href="#sustav">Rezervacije</a>
+      <a href="#sustav">Admin panel</a>
+      <a href="#sustav">CRM</a>
+    </div>
+    <div class="footer-col">
+      <h4>Paketi</h4>
+      <a href="#paketi">Standard</a>
+      <a href="#paketi">Pro</a>
+      <a href="#paketi">Premium</a>
+      <a href="#partneri">Partneri</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kompanija</h4>
+      <a href="#case">Case study</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#kontakt">Demo</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Claveo. Sva prava pridržana.</div>
+    <div class="footer-seo">Hotel management software · Rezervacijski sustav za hotele · Hotel CRM · Digitalizacija hotela · Property management system Hrvatska</div>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(){
+  const n=document.getElementById('f-name').value;
+  const e=document.getElementById('f-email').value;
+  if(n&&e){
+    document.getElementById('f-success').style.display='block';
+    ['f-name','f-person','f-email','f-tel'].forEach(id=>{document.getElementById(id).value='';});
+    document.getElementById('f-type').selectedIndex=0;
+    document.getElementById('f-package').selectedIndex=0;
+  }
+}
+function toggleFaq(btn){
+  const answer=btn.nextElementSibling;
+  const icon=btn.querySelector('.faq-icon');
+  const isOpen=answer.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(i=>i.classList.remove('open'));
+  if(!isOpen){answer.classList.add('open');icon.classList.add('open');}
+}
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});
+},{threshold:0.1});
+document.querySelectorAll('.audience-card,.feat-card,.plan').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(20px)';
+  el.style.transition='opacity 0.5s ease, transform 0.5s ease, border-color 0.25s, box-shadow 0.25s';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
