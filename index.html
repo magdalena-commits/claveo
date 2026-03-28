@@ -994,12 +994,10 @@ PRAVILA ODGOVARANJA:
 - Ako pitaju može li se integrirati s njihovim PMS-om — reci da da, i predloži da provjere kompatibilnost`;
 
   try {
-    var response = await fetch('https://api.anthropic.com/v1/messages', {
+    var response = await fetch('/api/chat', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 300,
         system: systemPrompt,
         messages: chatHistory
       })
