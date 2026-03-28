@@ -1012,7 +1012,7 @@ PRAVILA ODGOVARANJA:
       if(chatHistory.length >= 4){
         var msgs = document.getElementById('chat-messages');
         var ctaDiv = document.createElement('div');
-        ctaDiv.innerHTML = '<button class="chat-cta-btn" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});closeChat()">📅 Zatražite besplatni demo →</button>';
+        ctaDiv.innerHTML = '<button class="chat-cta-btn" onclick="document.getElementById(\'kontakt\').scrollIntoView({behavior:\'smooth\'});closeChat()">📅 Zatražite besplatni demo →</button>';
         msgs.appendChild(ctaDiv);
         msgs.scrollTop = msgs.scrollHeight;
       }
