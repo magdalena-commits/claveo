@@ -812,15 +812,33 @@ function calcROI(){
 }
 calcROI();
 
-function handleSubmit(){
+async function handleSubmit(){
   var n=document.getElementById('f-name').value;
   var e=document.getElementById('f-email').value;
-  if(n&&e){
-    document.getElementById('f-success').style.display='block';
-    ['f-name','f-person','f-email','f-tel'].forEach(function(id){document.getElementById(id).value='';});
-    document.getElementById('f-type').selectedIndex=0;
-    document.getElementById('f-package').selectedIndex=0;
-  }
+  if(!n||!e) return;
+  var btn=document.querySelector('.submit-btn');
+  btn.disabled=true;
+  btn.textContent='Šalje se...';
+  try{
+    await fetch('/api/contact',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name:n,
+        person:document.getElementById('f-person').value,
+        email:e,
+        tel:document.getElementById('f-tel').value,
+        type:document.getElementById('f-type').value,
+        package:document.getElementById('f-package').value
+      })
+    });
+  }catch(err){}
+  document.getElementById('f-success').style.display='block';
+  ['f-name','f-person','f-email','f-tel'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('f-type').selectedIndex=0;
+  document.getElementById('f-package').selectedIndex=0;
+  btn.disabled=false;
+  btn.textContent='Pošalji upit — besplatni demo →';
 }
 
 function tFaq(btn){
