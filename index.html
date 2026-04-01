@@ -613,7 +613,8 @@ footer{background:var(--navy);padding:56px 64px 32px;}
   <div class="inner">
     <div class="chip">Živući primjer</div>
     <h2 class="st">Hotel Kalnik —<br><em>od nule do live za 7 dana.</em></h2>
-    <p class="sd" style="margin-bottom:40px;">Kompletan Claveo ekosustav implementiran u tjedan dana. Web stranica, rezervacije, CRM, 5 ciljnih skupina, marketing materijali — sve pod jednim krovom.</p>
+    <p class="sd" style="margin-bottom:32px;">Kompletan Claveo ekosustav implementiran u tjedan dana. Web stranica, rezervacije, CRM, 5 ciljnih skupina, marketing materijali — sve pod jednim krovom.</p>
+    <img src="images/hotel-kalnik-night.png" alt="Hotel Kalnik noćni eksterijeru" style="width:100%;height:320px;object-fit:cover;border-radius:16px;object-position:center 40%;display:block;margin-bottom:32px;">
     <div class="case-wrap">
       <div class="case-left">
         <div class="case-eye">Case study · 2025 · Hotel Kalnik, Hrvatska</div>
@@ -646,6 +647,10 @@ footer{background:var(--navy);padding:56px 64px 32px;}
       </div>
     </div>
     <p style="font-size:11px;color:var(--text3);margin-top:16px;text-align:center;">* Podaci temeljeni na internom praćenju Hotel Kalnik. Rezultati se mogu razlikovati ovisno o tržištu i sezoni.</p>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:32px;">
+      <img src="images/hotel-kalnik-exterior.jpeg" alt="Hotel Kalnik eksterijer" style="width:100%;height:280px;object-fit:cover;border-radius:16px;display:block;">
+      <img src="images/hotel-kalnik-phone.jpeg" alt="Hotel Kalnik web stranica na mobitelu" style="width:100%;height:280px;object-fit:cover;border-radius:16px;display:block;">
+    </div>
     <div class="lm-cred">
       <div class="lm-cred-inner">
         <div class="lm-cred-left">
@@ -886,11 +891,11 @@ footer{background:var(--navy);padding:56px 64px 32px;}
       </div>
       <div class="contact-right">
         <div class="frow">
-          <div class="fg"><label>Ime hotela ili grupe *</label><input type="text" placeholder="Hotel Adriatic" id="f-name"></div>
-          <div class="fg"><label>Kontakt osoba *</label><input type="text" placeholder="Ime i prezime" id="f-person"></div>
+          <div class="fg"><label>Ime hotela ili grupe *</label><input type="text" placeholder="Hotel Adriatic" id="f-name" required></div>
+          <div class="fg"><label>Kontakt osoba *</label><input type="text" placeholder="Ime i prezime" id="f-person" required></div>
         </div>
         <div class="frow">
-          <div class="fg"><label>Email adresa *</label><input type="email" placeholder="direktor@hotel.hr" id="f-email"></div>
+          <div class="fg"><label>Email adresa *</label><input type="email" placeholder="direktor@hotel.hr" id="f-email" required></div>
           <div class="fg"><label>Broj telefona</label><input type="tel" placeholder="+385 91 234 5678" id="f-tel"></div>
         </div>
         <div class="fg">
@@ -1270,7 +1275,7 @@ PRAVILA ODGOVARANJA:
 
 <div id="mobile-cta-bar">
   <button class="mob-cta-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">📅 Besplatni demo</button>
-  <a class="mob-cta-outline" href="tel:+385">📞 Nazovi nas</a>
+  <a class="mob-cta-outline" href="tel:+38591620400">📞 Nazovi nas</a>
 </div>
 
 </body>
