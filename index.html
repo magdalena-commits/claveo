@@ -541,12 +541,12 @@ footer{background:var(--navy);padding:56px 64px 32px;}
   <div class="inner">
     <div class="pitch-box">
       <div class="pitch-eye">Matematika je jednostavna</div>
-      <p class="pitch-h">Booking.com uzima <em>18% svake rezervacije.</em><br>Claveo uzima 249€ mjesečno — fiksno.</p>
-      <p class="pitch-sub">Hotel s 50 rezervacija po 150€ godišnje plaća Booking.comu <strong style="color:white;">13.500€</strong> u provizijama. Claveo košta <strong style="color:#7BA8E8;">2.988€</strong> godišnje. Razlika ostaje u vašem džepu.</p>
+      <p class="pitch-h">Booking.com uzima <em>18% svake rezervacije.</em><br>Claveo uzima <span id="pitch-pro-monthly">249€</span> mjesečno — fiksno.</p>
+      <p class="pitch-sub">Hotel s 50 rezervacija po 150€ godišnje plaća Booking.comu <strong style="color:white;">13.500€</strong> u provizijama. Claveo košta <strong style="color:#7BA8E8;"><span id="pitch-pro-annual">2.988€</span></strong> godišnje. Razlika ostaje u vašem džepu.</p>
       <div class="pitch-compare">
         <div class="pc-item"><div class="pc-val red">18%</div><div class="pc-label">Booking.com po rezervaciji</div></div>
         <div class="pc-vs">VS</div>
-        <div class="pc-item"><div class="pc-val blue">249€</div><div class="pc-label">Claveo — fiksno mjesečno</div></div>
+        <div class="pc-item"><div class="pc-val blue" id="pitch-compare-monthly">249€</div><div class="pc-label">Claveo — fiksno mjesečno</div></div>
       </div>
       <button class="btn-primary" onclick="document.getElementById('roi').scrollIntoView({behavior:'smooth'})">Izračunajte svoju uštedu →</button>
       <p class="pitch-note">* Izračun temeljen na prosječnim podacima. Stvarna ušteda ovisi o volumenu rezervacija.</p>
@@ -605,8 +605,8 @@ footer{background:var(--navy);padding:56px 64px 32px;}
       <div class="plan">
         <div class="plan-for">Za boutique hotele</div>
         <div class="plan-name">Standard</div>
-        <div class="plan-price"><sup>€</sup>2.500</div>
-        <div class="plan-monthly">+ 149 € / mjesec</div>
+        <div class="plan-price" id="price-standard-setup"><sup>€</sup>2.500</div>
+        <div class="plan-monthly" id="price-standard-monthly">+ 149 € / mjesec</div>
         <div class="plan-note">Setup jednom · otkaz s 30 dana</div>
         <hr>
         <ul>
@@ -624,8 +624,8 @@ footer{background:var(--navy);padding:56px 64px 32px;}
         <div class="plan-badge">Najpopularniji</div>
         <div class="plan-for">Za hotele s više usluga</div>
         <div class="plan-name">Pro</div>
-        <div class="plan-price"><sup>€</sup>4.500</div>
-        <div class="plan-monthly">+ 249 € / mjesec</div>
+        <div class="plan-price" id="price-pro-setup"><sup>€</sup>4.500</div>
+        <div class="plan-monthly" id="price-pro-monthly">+ 249 € / mjesec</div>
         <div class="plan-note">Setup jednom · otkaz s 30 dana</div>
         <hr>
         <ul>
@@ -642,8 +642,8 @@ footer{background:var(--navy);padding:56px 64px 32px;}
       <div class="plan">
         <div class="plan-for">Za lance i grupe objekata</div>
         <div class="plan-name">Premium</div>
-        <div class="plan-price"><sup>€</sup>7.500</div>
-        <div class="plan-monthly">+ 399 € / mjesec</div>
+        <div class="plan-price" id="price-premium-setup"><sup>€</sup>7.500</div>
+        <div class="plan-monthly" id="price-premium-monthly">+ 399 € / mjesec</div>
         <div class="plan-note">Setup jednom · otkaz s 30 dana</div>
         <hr>
         <ul>
@@ -798,13 +798,36 @@ footer{background:var(--navy);padding:56px 64px 32px;}
 </button>
 
 <script>
+var PRICES = {
+  standard: { setup: 2500, monthly: 149 },
+  pro:      { setup: 4500, monthly: 249 },
+  premium:  { setup: 7500, monthly: 399 }
+};
+
+(function applyPrices(){
+  function fmt(n){ return n.toLocaleString('hr-HR'); }
+  document.getElementById('price-standard-setup').innerHTML = '<sup>€</sup>' + fmt(PRICES.standard.setup);
+  document.getElementById('price-standard-monthly').textContent = '+ ' + PRICES.standard.monthly + ' € / mjesec';
+  document.getElementById('price-pro-setup').innerHTML = '<sup>€</sup>' + fmt(PRICES.pro.setup);
+  document.getElementById('price-pro-monthly').textContent = '+ ' + PRICES.pro.monthly + ' € / mjesec';
+  document.getElementById('price-premium-setup').innerHTML = '<sup>€</sup>' + fmt(PRICES.premium.setup);
+  document.getElementById('price-premium-monthly').textContent = '+ ' + PRICES.premium.monthly + ' € / mjesec';
+  document.getElementById('pitch-pro-monthly').textContent = PRICES.pro.monthly + '€';
+  document.getElementById('pitch-pro-annual').textContent = fmt(PRICES.pro.monthly * 12) + '€';
+  document.getElementById('pitch-compare-monthly').textContent = PRICES.pro.monthly + '€';
+  var sel = document.getElementById('f-package');
+  sel.options[1].text = 'Standard — ' + fmt(PRICES.standard.setup) + '€ + ' + PRICES.standard.monthly + '€/mj';
+  sel.options[2].text = 'Pro — ' + fmt(PRICES.pro.setup) + '€ + ' + PRICES.pro.monthly + '€/mj';
+  sel.options[3].text = 'Premium — ' + fmt(PRICES.premium.setup) + '€ + ' + PRICES.premium.monthly + '€/mj';
+})();
+
 function calcROI(){
   var price=parseFloat(document.getElementById('roi-price').value)||0;
   var bookings=parseFloat(document.getElementById('roi-bookings').value)||0;
   var ota=parseFloat(document.getElementById('roi-ota').value)||0;
   var otaRev=price*bookings*(ota/100)*12;
   var otaCost=otaRev*0.18;
-  var claveo=2988;
+  var claveo=PRICES.pro.monthly*12;
   var saving=Math.max(0,otaCost-claveo);
   document.getElementById('roi-ota-cost').textContent=Math.round(otaCost).toLocaleString()+'€';
   document.getElementById('roi-net').textContent=Math.round(saving).toLocaleString()+'€';
@@ -820,7 +843,7 @@ async function handleSubmit(){
   btn.disabled=true;
   btn.textContent='Šalje se...';
   try{
-    await fetch('/api/contact',{
+    var res=await fetch('/api/contact',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
@@ -832,13 +855,17 @@ async function handleSubmit(){
         package:document.getElementById('f-package').value
       })
     });
-  }catch(err){}
-  document.getElementById('f-success').style.display='block';
-  ['f-name','f-person','f-email','f-tel'].forEach(function(id){document.getElementById(id).value='';});
-  document.getElementById('f-type').selectedIndex=0;
-  document.getElementById('f-package').selectedIndex=0;
-  btn.disabled=false;
-  btn.textContent='Pošalji upit — besplatni demo →';
+    if(!res.ok) throw new Error('Greška pri slanju');
+    document.getElementById('f-success').style.display='block';
+    ['f-name','f-person','f-email','f-tel'].forEach(function(id){document.getElementById(id).value='';});
+    document.getElementById('f-type').selectedIndex=0;
+    document.getElementById('f-package').selectedIndex=0;
+  }catch(err){
+    alert('Došlo je do greške pri slanju upita. Molimo pokušajte ponovno ili nas kontaktirajte direktno.');
+  }finally{
+    btn.disabled=false;
+    btn.textContent='Pošalji upit — besplatni demo →';
+  }
 }
 
 function tFaq(btn){
@@ -958,7 +985,14 @@ function addMsg(role, text){
   div.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
   var now = new Date();
   var time = now.getHours() + ':' + String(now.getMinutes()).padStart(2,'0');
-  div.innerHTML = '<div class="msg-bubble">' + text.replace(/\n/g,'<br>') + '</div><div class="msg-time">' + time + '</div>';
+  var bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  bubble.textContent = text;
+  var timeEl = document.createElement('div');
+  timeEl.className = 'msg-time';
+  timeEl.textContent = time;
+  div.appendChild(bubble);
+  div.appendChild(timeEl);
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 }
@@ -975,6 +1009,7 @@ function showTyping(show){
 async function sendMessage(text){
   addMsg('user', text);
   chatHistory.push({role:'user', content: text});
+  if(chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
   showTyping(true);
 
   var systemPrompt = `Ti si Claveo AI asistent — ljubazni, stručni i prodajno orijentirani chatbot na web stranici Claveo sustava.
@@ -990,9 +1025,9 @@ CLAVEO je kompletan digitalni operativni sustav za hotele kojeg je razvio tim LM
 - Marketing materijali (factsheetovi, Meta i Google oglasi)
 
 PAKETI I CIJENE:
-- Standard: 2.500€ setup + 149€/mj — za boutique hotele do 50 soba
-- Pro: 4.500€ setup + 249€/mj — za hotele s više usluga, uključuje CRM i marketing
-- Premium: 7.500€ setup + 399€/mj — za lance i grupe, multi-property panel, custom dizajn
+- Standard: ${PRICES.standard.setup.toLocaleString('hr-HR')}€ setup + ${PRICES.standard.monthly}€/mj — za boutique hotele do 50 soba
+- Pro: ${PRICES.pro.setup.toLocaleString('hr-HR')}€ setup + ${PRICES.pro.monthly}€/mj — za hotele s više usluga, uključuje CRM i marketing
+- Premium: ${PRICES.premium.setup.toLocaleString('hr-HR')}€ setup + ${PRICES.premium.monthly}€/mj — za lance i grupe, multi-property panel, custom dizajn
 
 IMPLEMENTACIJA: 7 radnih dana. Bez IT osoblja. Bez tehničkog znanja.
 
@@ -1000,7 +1035,7 @@ INTEGRACIJE: Nokumo PMS, Beds24, Smoobu, HubSpot, Vercel CDN, Meta Ads, Google A
 
 TIM: LM Komunikacije — 10+ godina iskustva, 200+ B2B klijenata (Maistra, Terme Sveti Martin, Adriatic Luxury Hotels, NP Plitvička jezera)
 
-KEY PITCH: Booking.com uzima 18% po rezervaciji. Claveo košta 249€ fiksno mjesečno. Na 50 rezervacija po 150€ = ušteda 10.000€+ godišnje.
+KEY PITCH: Booking.com uzima 18% po rezervaciji. Claveo košta ${PRICES.pro.monthly}€ fiksno mjesečno. Na 50 rezervacija po 150€ = ušteda 10.000€+ godišnje.
 
 PRAVILA ODGOVARANJA:
 - Odgovaraj kratko i jasno, max 3-4 rečenice
@@ -1012,14 +1047,19 @@ PRAVILA ODGOVARANJA:
 - Ako pitaju može li se integrirati s njihovim PMS-om — reci da da, i predloži da provjere kompatibilnost`;
 
   try {
+    var controller = new AbortController();
+    var timeout = setTimeout(function(){ controller.abort(); }, 20000);
     var response = await fetch('/api/chat', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         system: systemPrompt,
         messages: chatHistory
-      })
+      }),
+      signal: controller.signal
     });
+    clearTimeout(timeout);
+    if (!response.ok) throw new Error('API error');
     var data = await response.json();
     showTyping(false);
     if(data.content && data.content[0]){

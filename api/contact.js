@@ -9,6 +9,10 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Nedostaju obavezna polja' });
   }
 
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ error: 'Nevažeća email adresa' });
+  }
+
   const html = `
     <h2>Novi upit s Claveo stranice</h2>
     <table style="border-collapse:collapse;width:100%;font-family:sans-serif;">
@@ -48,7 +52,7 @@ export default async function handler(req, res) {
     headers,
     body: JSON.stringify({
       from: 'Claveo <onboarding@resend.dev>',
-      to: ['magdalena@lmkomunikacije.com'],
+      to: [process.env.ADMIN_EMAIL || 'magdalena@lmkomunikacije.com'],
       subject: `Novi upit: ${name}`,
       html: html
     })
